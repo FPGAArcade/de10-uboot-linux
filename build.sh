@@ -34,12 +34,10 @@ export TOP_FOLDER=$REPO_ROOT
 
 # TODO regenerate BSP if QSYS changes ????
 
-cd $TOP_FOLDER/replay_ghrd/software/bootloader
+UBOOT_ROOT=$TOP_FOLDER/replay_ghrd/software/bootloader/u-boot-socfpga
+[ -f ${UBOOT_ROOT}/Makefile ] || { echo >&2 "Repo not cloned with '--recurse-submodules'. Aborting."; exit 1; }
 
-git clone https://github.com/altera-opensource/u-boot-socfpga
-cd u-boot-socfpga
-
-git checkout -b replay-bootloader -t origin/socfpga_v2021.01
+cd ${UBOOT_ROOT}
 
 ./arch/arm/mach-socfpga/qts-filter.sh cyclone5 ../../../ ../ ./board/terasic/de10-nano/qts/
 

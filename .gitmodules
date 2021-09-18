@@ -1,0 +1,4 @@
+[submodule "replay_ghrd/software/bootloader/u-boot-socfpga"]
+	path = replay_ghrd/software/bootloader/u-boot-socfpga
+	url = https://github.com/altera-opensource/u-boot-socfpga
+	branch = socfpga_v2021.01
