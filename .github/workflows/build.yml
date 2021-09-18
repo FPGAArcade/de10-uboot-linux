@@ -19,7 +19,6 @@ jobs:
     - name: build
       run: ./build.sh
 
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v2
       with:
-        name: u-boot-with-spl.sfp
         path: u-boot-with-spl.sfp
