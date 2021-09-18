@@ -45,3 +45,4 @@ export CROSS_COMPILE=${GCC_PREFIX}
 make socfpga_de10_nano_defconfig
 make -j 48
 
+[ -f u-boot-with-spl.sfp ] && { git reset --hard; cp u-boot-with-spl.sfp $REPO_ROOT; }
