@@ -6,3 +6,4 @@
 [submodule "replay_ghrd/software/linux/linux-socfpga"]
 	path = replay_ghrd/software/linux/linux-socfpga
 	url = https://github.com/altera-opensource/linux-socfpga.git
+	shallow = true
