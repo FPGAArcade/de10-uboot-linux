@@ -46,3 +46,36 @@ make socfpga_de10_nano_defconfig
 make -j 48
 
 [ -f u-boot-with-spl.sfp ] && { git reset --hard; cp u-boot-with-spl.sfp $REPO_ROOT; }
+
+# build kernel
+KERNEL_ROOT=$TOP_FOLDER/replay_ghrd/software/linux/linux-socfpga
+[ -f ${KERNEL_ROOT}/Makefile ] || { echo >&2 "Repo still not cloned with '--recurse-submodules'?"; exit 1; }
+
+cd ${KERNEL_ROOT}
+
+cp ../socfpga_cyclone5_de10_replay.dts arch/arm/boot/dts/
+
+export ARCH=arm
+make socfpga_defconfig
+make -j 48 zImage Image dtbs modules
+make -j 48 modules_install INSTALL_MOD_PATH=modules_install
+make -j 48 socfpga_cyclone5_de10_replay.dtb
+
+rm -rf modules_install/lib/modules/*/build
+rm -rf modules_install/lib/modules/*/source
+
+mkdir -p $REPO_ROOT/linux
+
+ln -s ${KERNEL_ROOT}/arch/arm/boot/zImage ${REPO_ROOT}/linux/
+ln -s ${KERNEL_ROOT}/arch/arm/boot/Image ${REPO_ROOT}/linux/
+ln -s ${KERNEL_ROOT}/arch/arm/boot/dts/socfpga_cyclone5_de10_replay.dtb ${REPO_ROOT}/linux/
+ln -s ${KERNEL_ROOT}/modules_install/lib/modules ${REPO_ROOT}/linux/
+
+tar cvzhf ${REPO_ROOT}/linux_kernel.tar.gz -C ${REPO_ROOT}/linux .
+rm -rf ${REPO_ROOT}/linux
+
+make distclean
+git reset --hard
+git clean -fdx
+
+echo "DONE!"

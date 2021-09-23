@@ -23,3 +23,8 @@ jobs:
       with:
         name: u-boot-with-spl.sfp
         path: u-boot-with-spl.sfp
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: linux_kernel.tar.gz
+        path: linux_kernel.tar.gz
