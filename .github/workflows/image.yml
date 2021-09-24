@@ -17,7 +17,7 @@ jobs:
     - name: build
       run: ./build.sh
 
-      - name: create sdcard image
+    - name: create sdcard image
       run: ./create_sdcard.sh
 
     - uses: actions/upload-artifact@v2
