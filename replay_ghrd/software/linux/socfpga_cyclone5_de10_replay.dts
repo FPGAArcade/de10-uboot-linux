@@ -74,6 +74,10 @@
 	clock-frequency = <100000>;
 };
 
+&spi0 {
+    status = "okay";
+};
+
 &mmc0 {
 	vmmc-supply = <&regulator_3_3v>;
 	vqmmc-supply = <&regulator_3_3v>;
