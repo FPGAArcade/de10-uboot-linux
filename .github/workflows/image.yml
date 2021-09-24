@@ -1,0 +1,26 @@
+name: image
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  image:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: build
+      run: ./build.sh
+
+      - name: create sdcard image
+      run: ./create_sdcard.sh
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: sdcard_replay
+        path: sdcard_replay.img
