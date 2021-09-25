@@ -91,3 +91,13 @@
 &usb1 {
 	status = "okay";
 };
+
+&fpga_bridge0 {
+  status = "okay";
+  bridge-enable = <1>;
+};
+
+&fpga_bridge1 {
+  status = "okay";
+  bridge-enable = <1>;
+};
