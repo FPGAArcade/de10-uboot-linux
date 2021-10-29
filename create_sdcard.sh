@@ -27,7 +27,7 @@ mkdir extlinux
 echo "LABEL Linux Default" > extlinux/extlinux.conf
 echo "    KERNEL ../zImage" >> extlinux/extlinux.conf
 echo "    FDT ../socfpga_cyclone5_de10_replay.dtb" >> extlinux/extlinux.conf
-echo "    APPEND root=/dev/mmcblk0p2 rw rootwait earlyprintk console=ttyS0,115200n8" >> extlinux/extlinux.conf
+echo "    APPEND root=/dev/mmcblk0p2 rw rootwait earlyprintk console=ttyS0,115200n8 mem=256M memmap=768M\$256M" >> extlinux/extlinux.conf
 
 cd $TOP_FOLDER/sd_card
 mkdir rootfs && cd rootfs
